@@ -23,4 +23,13 @@ public class TaskManager
         _tasks.Clear();
         _tasks.AddRange(tasks);
     }
+
+    public Task CreateTask(string description)
+    {
+        var maxId = _tasks.Count > 0 ? _tasks.Last().Id : 0;
+        _tasks.Add(new Task(maxId + 1, description));
+        return _tasks.Last();
+    }
+
+    public void SaveAll() => StoreService.Instance.Write(_tasks);
 }
