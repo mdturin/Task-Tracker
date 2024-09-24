@@ -18,7 +18,7 @@ public class TaskManager
 
     public void LoadAllTasks(List<Task> tasks)
     {
-        Console.WriteLine("Loading your all tasks...");
+        //Console.WriteLine("Loading your all tasks...");
 
         _tasks.Clear();
         _tasks.AddRange(tasks);

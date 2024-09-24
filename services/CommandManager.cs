@@ -22,7 +22,7 @@ public class CommandManager
 
     public void LoadAllCommands()
     {
-        Console.WriteLine("Registering all commands...");
+        //Console.WriteLine("Registering all commands...");
         Assembly
             .GetExecutingAssembly()
             .GetTypes()
@@ -37,7 +37,7 @@ public class CommandManager
                 var commandAttribute = type
                     .GetCustomAttribute<ExportCommandAttribute>();
                 _commandTypes.Add(commandAttribute.Name, type);
-                Console.WriteLine($"Command Registered: {commandAttribute.Name}");
+                //Console.WriteLine($"Command Registered: {commandAttribute.Name}");
             });
     }
 

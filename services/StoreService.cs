@@ -30,13 +30,13 @@ public class StoreService
     {
         if (!Directory.Exists(_storePath))
         {
-            Console.WriteLine("Creating your directory...");
+            //Console.WriteLine("Creating your directory...");
             Directory.CreateDirectory(_storePath);
         }
 
         if (!File.Exists(_filePath))
         {
-            Console.WriteLine("Creating your store file...");
+            //Console.WriteLine("Creating your store file...");
             File.WriteAllText(_filePath, JsonSerializer.Serialize(new List<Task>()));
             return [];
         }

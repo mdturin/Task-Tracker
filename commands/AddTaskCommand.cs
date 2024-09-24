@@ -23,5 +23,6 @@ public class AddTaskCommand : ICommand
         args.SetValue("Task", newTask);
 
         taskManager.SaveAll();
+        Console.WriteLine($"Task added successfully (ID: ${newTask.Id})");
     }
 }
