@@ -20,7 +20,7 @@ public class ConfigurationService
 
     private void LoadAppConfig()
     {
-        string jsonString = File.ReadAllText("appconfig.json");
+        string jsonString = File.ReadAllText("C:\\AppStore\\appconfig.json");
         _values = JsonSerializer
             .Deserialize<Dictionary<string, string>>(jsonString);
     }
