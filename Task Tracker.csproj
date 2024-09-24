@@ -6,12 +6,6 @@
     <RootNamespace>Task_Tracker</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
+	<AssemblyName>Task-Cli</AssemblyName>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Update="appconfig.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>
