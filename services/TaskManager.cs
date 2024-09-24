@@ -2,15 +2,15 @@
 
 namespace Task_Tracker.services;
 
-public class TaskManagerService
+public class TaskManager
 {
     private readonly List<Task> _tasks = [];
-    private readonly static Lazy<TaskManagerService> _instance
-        = new(() => new TaskManagerService());
+    private readonly static Lazy<TaskManager> _instance
+        = new(() => new TaskManager());
 
-    public static TaskManagerService Instance { get => _instance.Value; }
+    public static TaskManager Instance { get => _instance.Value; }
 
-    private TaskManagerService()
+    private TaskManager()
     {
         if (_instance.IsValueCreated)
             throw new Exception("Duplication of TaskManagerService");

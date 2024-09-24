@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using Task_Tracker.attributes;
 using Task_Tracker.interfaces;
 using Task_Tracker.models;
 using Task_Tracker.services;
@@ -6,6 +7,7 @@ using Task = Task_Tracker.models.Task;
 
 namespace Task_Tracker.commands;
 
+[ExportCommand(nameof(LoadAllTasksCommand))]
 public class LoadAllTasksCommand : ICommand
 {
     public void Execute(DynamicItem args)
@@ -31,6 +33,6 @@ public class LoadAllTasksCommand : ICommand
 
         var jsonStr = File.ReadAllText(filePath);
         var tasks = JsonSerializer.Deserialize<List<Task>>(jsonStr);
-        TaskManagerService.Instance.LoadAllTasks(tasks);
+        TaskManager.Instance.LoadAllTasks(tasks);
     }
 }
