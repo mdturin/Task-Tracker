@@ -57,7 +57,11 @@ public class TaskManager
     {
         var task = GetTask(taskId);
         if (task != null)
+        {
             task.Description = description;
+            task.UpdatedAt = DateTime.UtcNow;
+        }
+
         return task != null;
     }
 
