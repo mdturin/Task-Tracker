@@ -5,7 +5,7 @@ using Task = Task_Tracker.models.Task;
 
 namespace Task_Tracker.commands;
 
-[ExportCommand("list")]
+[ExportCommand("List")]
 public class ListTaskCommand : ICommand
 {
     public void Execute(params string[] args)

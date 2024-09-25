@@ -5,7 +5,7 @@ using TaskStatus = Task_Tracker.enums.TaskStatus;
 
 namespace Task_Tracker.commands;
 
-[ExportCommand("mark-done")]
+[ExportCommand("Mark-Done")]
 public class MarkDoneCommand : ICommand
 {
     public void Execute(params string[] args)
