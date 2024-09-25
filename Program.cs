@@ -14,5 +14,12 @@ var loadTasksCommand = commandManager
     .GetCommand(nameof(LoadAllTasksCommand));
 loadTasksCommand.Execute();
 
-var command = commandManager.GetCommand(args[0]);
-command.Execute(args);
+try
+{
+    var command = commandManager.GetCommand(args[0]);
+    command.Execute(args);
+}
+catch(Exception ex)
+{
+    Console.WriteLine(ex.Message);
+}
