@@ -1,4 +1,6 @@
-﻿using Task_Tracker.enums;
+﻿using System.ComponentModel;
+using System.Reflection;
+using Task_Tracker.enums;
 using Task = Task_Tracker.models.Task;
 using TaskStatus = Task_Tracker.enums.TaskStatus;
 
@@ -45,6 +47,13 @@ public class TaskManager
         return _tasks.FindAll(t => taskIds.Contains(t.Id));
     }
 
+    public List<Task> GetAllTasks() => _tasks;
+
+    public List<Task> GetAllTasks(TaskStatus taskStatus)
+    {
+        return _tasks.FindAll(t => t.Status == taskStatus);
+    }
+
     public bool UpdateTask(int taskId, string description)
     {
         var task = GetTask(taskId);
@@ -66,5 +75,28 @@ public class TaskManager
         var tasks = GetTasks(taskIds);
         tasks.ForEach(t => t.Status = status);
         return tasks.Count > 0;
+    }
+
+    public bool GetValidTaskStatus(string taskStatusValue, out TaskStatus taskStatus)
+    {
+        foreach (TaskStatus status in Enum.GetValues(typeof(TaskStatus)))
+        {
+            var description = GetEnumDescription(status);
+            if (description.Equals(taskStatusValue, StringComparison.OrdinalIgnoreCase))
+            {
+                taskStatus = status;
+                return true;
+            }
+        }
+
+        taskStatus = TaskStatus.ToDo;
+        return false;
+    }
+
+    private string GetEnumDescription(Enum value)
+    {
+        var fieldInfo = value.GetType().GetField(value.ToString());
+        var attribute = fieldInfo.GetCustomAttribute<DescriptionAttribute>();
+        return attribute?.Description ?? value.ToString();
     }
 }

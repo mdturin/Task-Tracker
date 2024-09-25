@@ -2,7 +2,7 @@
   "profiles": {
     "Task Tracker": {
       "commandName": "Project",
-      "commandLineArgs": "add \"Buy groceries\""
+      "commandLineArgs": "list todo"
     }
   }
 }
