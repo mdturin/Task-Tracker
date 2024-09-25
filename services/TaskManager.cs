@@ -1,4 +1,6 @@
-﻿using Task = Task_Tracker.models.Task;
+﻿using Task_Tracker.enums;
+using Task = Task_Tracker.models.Task;
+using TaskStatus = Task_Tracker.enums.TaskStatus;
 
 namespace Task_Tracker.services;
 
@@ -38,8 +40,31 @@ public class TaskManager
         return _tasks.FirstOrDefault(t => t.Id == id);
     }
 
-    public void UpdateTask(Task task)
+    public List<Task> GetTasks(params int[] taskIds)
     {
+        return _tasks.FindAll(t => taskIds.Contains(t.Id));
+    }
 
+    public bool UpdateTask(int taskId, string description)
+    {
+        var task = GetTask(taskId);
+        if (task != null)
+            task.Description = description;
+        return task != null;
+    }
+
+    public bool DeleteTask(int taskId)
+    {
+        var task = GetTask(taskId);
+        if (task != null)
+            _tasks.Remove(task);
+        return task != null;
+    }
+
+    public bool MarkTaskStatus(TaskStatus status, params int[] taskIds)
+    {
+        var tasks = GetTasks(taskIds);
+        tasks.ForEach(t => t.Status = status);
+        return tasks.Count > 0;
     }
 }

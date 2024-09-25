@@ -13,11 +13,7 @@ public class UpdateTaskCommand : ICommand
             throw new KeyNotFoundException("Id and Description is required!");
 
         var taskManager = TaskManager.Instance;
-        var id = int.Parse(args[1]);
-        var task = taskManager.GetTask(id) 
-            ?? throw new FileNotFoundException($"Task not found with ID({id})");
-
-        task.Description = args[2];
-        taskManager.SaveAll();
+        if (taskManager.UpdateTask(int.Parse(args[1]), args[2]))
+            taskManager.SaveAll();
     }
 }

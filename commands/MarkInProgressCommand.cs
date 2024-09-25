@@ -1,11 +1,12 @@
 ﻿using Task_Tracker.attributes;
 using Task_Tracker.interfaces;
 using Task_Tracker.services;
+using TaskStatus = Task_Tracker.enums.TaskStatus;
 
 namespace Task_Tracker.commands;
 
-[ExportCommand("Delete")]
-public class DeleteTaskCommand : ICommand
+[ExportCommand("mark-in-progress")]
+public class MarkInProgressCommand : ICommand
 {
     public void Execute(params string[] args)
     {
@@ -14,7 +15,7 @@ public class DeleteTaskCommand : ICommand
 
         var taskId = int.Parse(args[1]);
         var taskManager = TaskManager.Instance;
-        if (taskManager.DeleteTask(taskId))
+        if (taskManager.MarkTaskStatus(TaskStatus.InProgress, taskId))
             taskManager.SaveAll();
     }
 }
