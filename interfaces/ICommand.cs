@@ -4,5 +4,5 @@ namespace Task_Tracker.interfaces;
 
 public interface ICommand
 {
-    void Execute(DynamicItem args);
+    void Execute(params string[] args);
 }

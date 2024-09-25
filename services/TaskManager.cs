@@ -32,4 +32,14 @@ public class TaskManager
     }
 
     public void SaveAll() => StoreService.Instance.Write(_tasks);
+
+    public Task GetTask(int id)
+    {
+        return _tasks.FirstOrDefault(t => t.Id == id);
+    }
+
+    public void UpdateTask(Task task)
+    {
+
+    }
 }
