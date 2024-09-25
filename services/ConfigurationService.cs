@@ -4,7 +4,7 @@ namespace Task_Tracker.services;
 
 public class ConfigurationService
 {
-    private Dictionary<string, string> _values;
+    private Dictionary<string, string> _values = [];
     private readonly static Lazy<ConfigurationService> _instance
         = new(() => new ConfigurationService());
 
@@ -20,6 +20,11 @@ public class ConfigurationService
 
     private void LoadAppConfig()
     {
+        if (!File.Exists("C:\\AppStore\\appconfig.json"))
+        {
+            return;
+        }
+
         string jsonString = File.ReadAllText("C:\\AppStore\\appconfig.json");
         _values = JsonSerializer
             .Deserialize<Dictionary<string, string>>(jsonString);

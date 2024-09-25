@@ -19,8 +19,13 @@ public class StoreService
 
         var instance = ConfigurationService.Instance;
         _storePath = instance.GetConfig("StorePath");
+        if (string.IsNullOrWhiteSpace(_storePath))
+            _storePath = Path.GetTempPath();
 
         var fileName = instance.GetConfig("FileName");
+        if (string.IsNullOrWhiteSpace(fileName))
+            fileName = "TaskStore";
+
         _filePath = Path.Join(_storePath, fileName);
         _filePath = Path.ChangeExtension(_filePath, "json");
     }
