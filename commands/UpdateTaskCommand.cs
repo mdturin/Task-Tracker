@@ -12,8 +12,16 @@ public class UpdateTaskCommand : ICommand
         if (args.Length < 3)
             throw new KeyNotFoundException("Id and Description is required!");
 
+        int taskId = int.Parse(args[1]);
         var taskManager = TaskManager.Instance;
-        if (taskManager.UpdateTask(int.Parse(args[1]), args[2]))
+        if (taskManager.UpdateTask(taskId, args[2]))
+        {
             taskManager.SaveAll();
+            Console.WriteLine($"Task successfully updated (ID: {taskId})");
+        }
+        else
+        {
+            Console.WriteLine($"Task not found (ID: {taskId})");
+        }
     }
 }

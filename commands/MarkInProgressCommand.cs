@@ -16,6 +16,13 @@ public class MarkInProgressCommand : ICommand
         var taskId = int.Parse(args[1]);
         var taskManager = TaskManager.Instance;
         if (taskManager.MarkTaskStatus(TaskStatus.InProgress, taskId))
+        {
             taskManager.SaveAll();
+            Console.WriteLine($"Task successfully updated (ID: {taskId})");
+        }
+        else
+        {
+            Console.WriteLine($"Task not found (ID: {taskId})");
+        }
     }
 }

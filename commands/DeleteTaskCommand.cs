@@ -15,6 +15,13 @@ public class DeleteTaskCommand : ICommand
         var taskId = int.Parse(args[1]);
         var taskManager = TaskManager.Instance;
         if (taskManager.DeleteTask(taskId))
+        {
             taskManager.SaveAll();
+            Console.WriteLine($"Task successfully deleted (ID: {taskId})");
+        }
+        else
+        {
+            Console.WriteLine($"Task not found (ID: {taskId})");
+        }
     }
 }

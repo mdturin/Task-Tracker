@@ -21,6 +21,10 @@ public class ListTaskCommand : ICommand
         {
             tasks = taskManager.GetAllTasks(taskStatus);
         }
+        else
+        {
+            throw new Exception($"{args[1]} is not valid list command args!");
+        }
 
         tasks.ForEach(t =>
         {
